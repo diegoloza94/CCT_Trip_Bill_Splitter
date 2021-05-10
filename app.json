@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "CCT_Trip_Bill_Splitter",
+    "slug": "cct_trip_bill_splitter",
+    "version": "1.0.0",
+    "sdkVersion": "41.0.0",
+    "platforms": [],
+    "android": {
+      "package": "com.diegoloza94.cct_trip_bill_splitter"
+    },
+    "ios": {
+      "bundleIdentifier": "io.expo.client"
+    }
+  }
+}
