@@ -1,4 +1,4 @@
-package ie.cct.cwba.CATripBill.util;
+package ie.cct.cwba.CCTTripBillSplitter.util;
 
 import javax.crypto.spec.SecretKeySpec;
 

@@ -1,4 +1,6 @@
-package ie.cct.cwba.CATripBill.controller;
+package ie.cct.cwba.CCTTripBillSplitter.controller;
+
+//Diego Lozano
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,17 +14,17 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ie.cct.cwba.CATripBill.model.Item;
-import ie.cct.cwba.CATripBill.util.JWTIssuer;
+import ie.cct.cwba.CCTTripBillSplitter.model.Item;
+import ie.cct.cwba.CCTTripBillSplitter.util.JWTIssuer;
 import io.jsonwebtoken.Claims;
 
 @RestController
-public class CAController {
+public class Controller {
 
-	private Map<String, ArrayList<Item>> tripbill;
+	private Map<String, ArrayList<Item>> tripbillsplitter;
 
-	public CAController() {
-		tripbill = new HashMap<>();
+	public Controller() {
+		tripbillsplitter = new HashMap<>();
 	}
 
 	@GetMapping("/login")
@@ -31,15 +33,15 @@ public class CAController {
 
 		// TODO: We want an array of users.
 		if ("david".contentEquals(username) && "s3cret".contentEquals(password)) {
-			return JWTIssuer.createJWT(username, "ca-tripbill", username, 86400000);
+			return JWTIssuer.createJWT(username, "ca-tripbillsplitter", username, 86400000);
 		}
 
 		// TODO: We want to return 401, when the username or password do not match.
-		return "test";
+		return "The USER and/or PASSWORD do not match.";
 	}
 
-	@PostMapping("/{tripbill}/expense") // Authorization: Bearer <token>
-	public Map<String, ArrayList<Item>> addExpense(@PathVariable("tripbill") String bill,
+	@PostMapping("/{tripbillsplitter}/expense") // Authorization: Bearer <token>
+	public Map<String, ArrayList<Item>> addExpense(@PathVariable("tripbillsplitter") String bill,
 			@RequestHeader(name = "Authorization", required = true) String token,
 			@RequestBody(required = true) Item item) {
 
@@ -50,25 +52,25 @@ public class CAController {
 			throw new RuntimeException("Unknown user"); 
 		}
 
-		if(tripbill.get(bill) == null) {
-			tripbill.put(bill, new ArrayList<Item>());
+		if(tripbillsplitter.get(bill) == null) {
+			tripbillsplitter.put(bill, new ArrayList<Item>());
 		}
 		
-		tripbill.get(bill).add(item);
-		return tripbill;
+		tripbillsplitter.get(bill).add(item);
+		return tripbillsplitter;
 	}
 
-	@GetMapping("/{tripbill}")
-	public String getTrip(@PathVariable("tripbill") String bill) {
+	@GetMapping("/{tripbillsplitter}")
+	public String getTrip(@PathVariable("tripbillsplitter") String bill) {
 		return "";
 	}
 
 	@PostMapping("/{tripbill}/close")
-	public String closeTrip(@PathVariable("tripbill") String bill) {
+	public String closeTrip(@PathVariable("tripbillsplitter") String bill) {
 		return "";
 	}
 
-	@GetMapping("/{tripbill}/summary")
+	@GetMapping("/{tripbillsplitter}/summary")
 	public String getSummary() {
 		return "";
 	}

@@ -1,10 +1,10 @@
-package ie.cct.cwba.CATripBill;
+package ie.cct.cwba.CCTTripBillSplitter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CaTripBillApplicationTests {
+class CctTripBillSplitterApplicationTests {
 
 	@Test
 	void contextLoads() {

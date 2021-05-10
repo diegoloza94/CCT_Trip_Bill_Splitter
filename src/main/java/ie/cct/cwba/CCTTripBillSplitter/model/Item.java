@@ -1,4 +1,4 @@
-package ie.cct.cwba.CATripBill.model;
+package ie.cct.cwba.CCTTripBillSplitter.model;
 
 public class Item {
 	
