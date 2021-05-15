@@ -118,7 +118,14 @@ const Login = ({ navigation }) => {
           >
             <Text style={form.buttonText1}>Sign Up</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("About")}
+            style={form.button1}
+          >
+            <Text style={form.buttonText1}>About Me</Text>
+          </TouchableOpacity>
         </View>
+        
 
       </View>
     </TouchableWithoutFeedback>

@@ -8,7 +8,7 @@ import { basic, form } from "../shared/styles";
 const Home = ({ navigation }) => {
   return (
     <>
-      
+      <Image source={require("../assets/split.jpg")} style={basic.image} />
       <View style={basic.container}>
         <View>
           <View style={form.field}>
@@ -18,7 +18,7 @@ const Home = ({ navigation }) => {
             </Text>
           </View>
           <View style={form.field}>
-            <TouchableOpacity style={form.button}>
+            <TouchableOpacity onPress={() => navigation.navigate("Calculate")} style={form.button}>
               <Text style={form.buttonText}> $ Calculate</Text>
             </TouchableOpacity>
             </View>

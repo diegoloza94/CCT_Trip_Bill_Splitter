@@ -3,6 +3,8 @@ import React from "react";
 // Screens
 import Login from "../screens/Login";
 import Signup from '../screens/Signup';
+import Calculate from "../screens/Calculate";
+import About from "../screens/About";
 import Home from "../screens/Home";
 
 // Navigation
@@ -41,6 +43,8 @@ const Root = () => {
       >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Calculate" component={Calculate} />
+        <Stack.Screen name="About" component={About} />
         <Stack.Screen options={{headerMode: 'none', headerShown: false}} name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
