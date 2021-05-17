@@ -13,7 +13,7 @@ import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import CheckBox from "react-native-check-box";
 
 // Custom styles
-import { basic, form, colors } from "../shared/styles";
+import { basic, form, colors } from "../components/styles";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");

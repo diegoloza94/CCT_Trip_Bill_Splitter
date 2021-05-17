@@ -14,7 +14,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 // Custom styles
-import { basic, form, colors } from "../shared/styles";
+import { basic, form, colors } from "../components/styles";
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");

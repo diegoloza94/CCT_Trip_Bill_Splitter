@@ -12,7 +12,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Custom styles
-import { colors } from "../shared/styles";
+import { colors } from "../components/styles";
 
 const Stack = createStackNavigator();
 

@@ -3,7 +3,7 @@ import React from "react";
 // UI elements
 import { View, Text, TouchableOpacity, Image } from "react-native";
 // Custom styles      <Image source={require("../assets/split.jpg")} style={basic.image} />
-import { basic, form } from "../shared/styles";
+import { basic, form } from "../components/styles";
 
 const Home = ({ navigation }) => {
   return (
