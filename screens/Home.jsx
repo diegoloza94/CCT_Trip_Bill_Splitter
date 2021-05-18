@@ -14,12 +14,16 @@ const Home = ({ navigation }) => {
           <View style={form.field}>
             <Text style={form.heading}>Split the Bill of your Trip</Text>
             <Text style={[form.text, { paddingVertical: 5, lineHeight: 25 }]}>
-             
             </Text>
           </View>
           <View style={form.field}>
             <TouchableOpacity onPress={() => navigation.navigate("Calculate")} style={form.button}>
-              <Text style={form.buttonText}> $ Calculate</Text>
+              <Text style={form.buttonText}> $ Calculate Trip Bill</Text>
+            </TouchableOpacity>
+            </View>
+            <View style={form.field}>
+            <TouchableOpacity onPress={() => navigation.navigate("ListBills")} style={form.button}>
+              <Text style={form.buttonText}> All List Bills</Text>
             </TouchableOpacity>
             </View>
             <View style={form.field}>

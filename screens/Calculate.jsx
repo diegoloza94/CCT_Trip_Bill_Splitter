@@ -14,61 +14,67 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 // Custom styles
-import { basic, form, colors } from "../components/styles";
+import { basic, form, colors , styles} from "../components/styles";
+import Trip from '../components/trip';
 
-const Calculate = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
+export function Calculate({ navigation}) {
+  /*const [trip, setTrip] = useState();*/
+  const [tripItems, setTripItems] = useState([]);
+
+/*const Calculate = ({ navigation }) => {*/
+  const [trip, setTrip] = useState("");
+  const [amount, setamount] = useState("");
+  const [description, setdescription] = useState("");
+  const [user, setuser] = useState("");
   const [message, setMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
-  const validateEmail = email => {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+  const validateAmount = amount => {
+    var re = /^[0-9]+$/;
+    return re.test(amount);
   };
 
-  const validatePassword = password => {
-    let re = /[0-9]+/;
-    return re.test(password);
-  };
-
-  const validatePhone = phone => {
-    let re = /^(233|0)[\d]{9}$/;
-    return re.test(phone);
+  const validateUser = user => {
+    var re = /^[0-9]+$/;
+    return re.test(user);
   };
 
   const handleSubmit = () => {
     if (
-      email === "" ||
-      phone === "" ||
-      username === "" ||
-      rePassword === "" ||
-      password === ""
+      amount === "" ||
+      description === "" ||
+      user === "" ||
+      trip === ""
     ) {
       setMessage("Fill in all fields");
-    } else if (!validateEmail(email)) {
-      setMessage("Only valid email addresses are accepted");
-    } else if (!validatePhone(phone)) {
-      setMessage("Invalid phone number");
-    } else if (password.length <= 10) {
-      setMessage("Password should have more than 10 characters");
-    } else if (!validatePassword(password)) {
-      setMessage("Password should include numbers");
-    } else if (password !== rePassword) {
-      setMessage("Passwords donot match!");
+    } else if (!validateAmount(amount)) {
+        setMessage("Only numbers are accepted in amount field");
+    } else if (!validateUser(user)) {
+        setMessage("Only numbers are accepted in user field");
     } else {
       setMessage("");
-      setPassword("");
-      setPhone("");
-      setUsername("");
-      setEmail("");
-      setRePassword("");
+      setTrip("");
+      setamount("");
+      setdescription("");
+      setuser("");
+      setTripItems([...tripItems, trip, amount, description])
       navigation.navigate("Home");
     }
   };
+
+  const handleAddBill = () => {
+    Keyboard.dismiss();
+    setTripItems([...tripItems, trip, amount, description])
+    setTrip("");
+    setamount("");
+    setdescription("");
+    setuser("");
+  }
+
+  const completeTrip = (index) => {
+    let itemsCopy = [...tripItems];
+    itemsCopy.splice(index, 1);
+    setTripItems(itemsCopy)
+  }
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -78,83 +84,85 @@ const Calculate = ({ navigation }) => {
         enabled
       >
         <ScrollView>
-          <Text style={[form.heading, form.field]}>Sign Up</Text>
+          <Text style={[form.heading, form.field]}>Trip</Text>
           <Text style={form.message}>{message}</Text>
 
           <View style={form.field}>
-            <Text style={form.label}>Username</Text>
+            <Text style={form.label}>Trip</Text>
             <TextInput
-              onChangeText={value => setUsername(value)}
-              name="username"
+              onChangeText={value => setTrip(value)}
+              name="trip"
               style={form.input}
-              value={username}
+              value={trip}
               autoCapitalize="none"
             />
           </View>
 
           <View style={form.field}>
-            <Text style={form.label}>Email</Text>
+            <Text style={form.label}>Amount</Text>
             <TextInput
-              onChangeText={value => setEmail(value)}
-              name="email"
+              onChangeText={value => setamount(value)}
+              name="amount"
               style={form.input}
-              value={email}
+              value={amount}
               autoCapitalize="none"
-              keyboardType="email-address"
             />
           </View>
 
           <View style={form.field}>
-            <Text style={form.label}>Phone Number</Text>
+            <Text style={form.label}>Description</Text>
             <TextInput
-              onChangeText={value => setPhone(value)}
-              name="phone"
+              onChangeText={value => setdescription(value)}
+              name="description"
               style={form.input}
-              value={phone}
+              value={description}
               autoCapitalize="none"
-              maxLength={12}
-              keyboardType="number-pad"
             />
           </View>
 
           <View style={form.field}>
-            <Text style={form.label}>Password</Text>
+            <Text style={form.label}>How Many Users would you like to share the bills</Text>
             <TextInput
-              onChangeText={value => setPassword(value)}
-              name="password"
+              onChangeText={value => setuser(value)}
+              name="user"
               style={form.input}
-              secureTextEntry={!showPassword}
-              value={password}
+              value={user}
               autoCapitalize="none"
             />
-            <Ionicons
-              onPress={() => setShowPassword(!showPassword)}
-              style={form.eye}
-              name={showPassword ? "md-eye-off" : "md-eye"}
-            />
-          </View>
-
-          <View style={form.field}>
-            <Text style={form.label}>Repeat Password</Text>
-            <TextInput
-              onChangeText={value => setRePassword(value)}
-              name="rePassword"
-              style={form.input}
-              secureTextEntry={!showPassword}
-              value={rePassword}
-              autoCapitalize="none"
-            />
+            <TouchableOpacity onPress={handleAddBill} style={form.button}>
+            <Text style={form.buttonText}>Add User</Text>
+        </TouchableOpacity>
           </View>
 
           <View style={form.field}>
             <TouchableOpacity onPress={handleSubmit} style={form.button}>
-              <Text style={form.buttonText}>Register</Text>
+              <Text style={form.buttonText}>Add Bill Trip</Text>
             </TouchableOpacity>
           </View>
+
+          <View style={form.field}>
+          <TouchableOpacity onPress={handleAddBill} style={form.button}>
+          <View >
+            <Text style={form.buttonText}>+</Text>
+          </View>
+        </TouchableOpacity>
+        </View>
+
+        <View>
+          {
+            tripItems.map((item, index) => {
+              return (
+                <TouchableOpacity key={index}  onPress={() => completeTrip(index)}>
+                  <Trip text={item} /> 
+                </TouchableOpacity>
+              )
+            })
+          }
+        </View>
+
         </ScrollView>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 };
-
 export default Calculate;
