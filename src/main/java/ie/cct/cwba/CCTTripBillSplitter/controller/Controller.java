@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-//import ie.cct.cwba.CCTTripBillSplitter.model.Journey;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +27,10 @@ import io.jsonwebtoken.Claims;
 public class Controller {
 
 	private Map<String, ArrayList<Item>> tripbillsplitter;
-
 	
 	public Controller() {
 		tripbillsplitter = new HashMap<>();
+		
 	}
 	
 	@GetMapping("/Login")
@@ -83,16 +82,19 @@ public class Controller {
 		//Optional <Journey> trip = tripbillsplitter.
 		
 		if (tripbillsplitter.get(bill) != null) {
+			return tripbillsplitter.get(bill);
 		} else 
 			throw new RuntimeException("Error");
-		return tripbillsplitter.get(bill);
-		
 	} 
 
 	@PostMapping("/{tripbillsplitter}/close")
 	public String closeTrip(@PathVariable("tripbillsplitter") String bill) {
-		
-		return "";
+		//llamar arraylyst el de viaje y lo voy a comparar en dado de que exista y ahi le tengo que poner en true or false
+		if (tripbillsplitter.get(bill) != null) {
+			tripbillsplitter.get(bill).get(0).setStatus(true);
+		} else 
+			throw new RuntimeException("Error");
+		return "The Trip has been close correctly";
 	}
 
 	@GetMapping("/{tripbillsplitter}/summary")
@@ -104,6 +106,15 @@ public class Controller {
 				String subClaim = claims.get("sub", String.class);
 				
 				item.setName(subClaim);
+				
+				//imprimir todos los arraylyt or hasmap 
+				//tripItems.map((item, index) => {
+		            //  return (
+		             //   <TouchableOpacity key={index}  onPress={() => completeTrip(index)}>
+		              //    <Trip text={item} /> 
+		              //  </TouchableOpacity>
+		            //  )
+		           // })
 		return "";
 	}
 

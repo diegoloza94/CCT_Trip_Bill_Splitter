@@ -1,7 +1,7 @@
 {
     "expo": {
         "name": "CCT_Trip_Bill_Splitter",
-        "icon": "../assets/split.jpg",
+        "icon": "./assets/icon.png",
         "slug": "cct_trip_bill_splitter",
         "version": "1.0.0",
         "sdkVersion": "41.0.0",

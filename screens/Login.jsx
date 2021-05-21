@@ -38,7 +38,7 @@ const Login = ({ navigation }) => {
   };
 
   //here I´m putting when you submit the lines in case if all the validations are corrects are going to the screen HOME
-  const handleSubmit = () => {
+  /*const handleSubmit = () => {
     if (email === "" || password === "") {
       setMessage("Fill in all fields");
     } else if (!validateEmail(email)) {
@@ -53,8 +53,21 @@ const Login = ({ navigation }) => {
       setEmail("");
       navigation.navigate("Home");
     }
-  };
+  };*/
 
+  //here I´m putting when you submit the lines in case if all the validations are corrects are going to the screen HOME
+  const handleSubmit = () => {
+    axios.post("http://localhost:8080" + "/Login", {
+    method: "POST",
+    Headers: {"Content-Type": "application/json"},
+  })
+  .then((Response) => {
+    console.log('response -'.Response);
+  }).catch(err =>{
+    console.log('error -'.err );
+  })
+  navigation.navigate("Home");
+}
   //start with the screen with the form asking you about the email and password
   //i add as well the Terms & Conditions because maybe in the future I saw this everywhere the terms
   //I add as well and I know is not correct to put in this section about me but I wanted to put there

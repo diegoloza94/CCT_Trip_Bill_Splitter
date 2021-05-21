@@ -4,6 +4,7 @@ public class Item {
 	
 	private String name;
 	private Integer price;
+	private boolean status;
 	
 	public Item() {
 		super();
@@ -27,6 +28,12 @@ public class Item {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-		
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}	
 
 }
