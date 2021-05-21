@@ -17,6 +17,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { basic, form, colors } from "../components/styles";
 
 const About = ({ navigation }) => {
+
+  //this screen is about me, I put this information if you want to contact to me
   
   const [message, setMessage] = useState("");
 

@@ -57,16 +57,16 @@ export function Calculate({ navigation}) {
       setdescription("");
       setuser("");
       setTripItems([...tripItems, trip, amount, description])
-      navigation.navigate("Home");
+      /*navigation.navigate("Home");*/
     }
   };
 
   const handleAddBill = () => {
     Keyboard.dismiss();
-    setTripItems([...tripItems, trip, amount, description])
+    setTripItems([...tripItems,trip, amount, description])
     setTrip("");
     setamount("");
-    setdescription("");
+    setdescription(""); 
     setuser("");
   }
 
@@ -139,14 +139,6 @@ export function Calculate({ navigation}) {
               <Text style={form.buttonText}>Add Bill Trip</Text>
             </TouchableOpacity>
           </View>
-
-          <View style={form.field}>
-          <TouchableOpacity onPress={handleAddBill} style={form.button}>
-          <View >
-            <Text style={form.buttonText}>+</Text>
-          </View>
-        </TouchableOpacity>
-        </View>
 
         <View>
           {

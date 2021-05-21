@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import services from "../services/loginservice"; 
 
 // UI elements
 import {
@@ -22,16 +24,20 @@ const Login = ({ navigation }) => {
   const [termsCheck, setTermsCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+
+  //validation of the email. I didn´t add the specific email like google.com or hotmail.com because i wanted the app works first, maybe in the future
   const validateEmail = email => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
 
+  //validation the password allow only numbers
   const validatePassword = password => {
     let re = /[0-9]+/;
     return re.test(password);
   };
 
+  //here I´m putting when you submit the lines in case if all the validations are corrects are going to the screen HOME
   const handleSubmit = () => {
     if (email === "" || password === "") {
       setMessage("Fill in all fields");
@@ -49,6 +55,9 @@ const Login = ({ navigation }) => {
     }
   };
 
+  //start with the screen with the form asking you about the email and password
+  //i add as well the Terms & Conditions because maybe in the future I saw this everywhere the terms
+  //I add as well and I know is not correct to put in this section about me but I wanted to put there
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={[basic.container]}>
